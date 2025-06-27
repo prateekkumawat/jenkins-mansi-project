@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage("App Code Checkout") {
       steps {
-        sh "git branch: 'master', url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git' "
+        git branch: 'master', url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git'
       }
     }
     
