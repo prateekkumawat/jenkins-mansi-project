@@ -6,7 +6,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '7'))
     timeout(time: 1, unit: 'HOURS') 
    }
-   parametes{
+   parameters {
      string(name: 'Branchname', defaultValue: 'master')
      string(name: 'Imagename', defaultValue: 'sampleapp')
      string(name: 'ImageTag', defaultValue: 'latest')
