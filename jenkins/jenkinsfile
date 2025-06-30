@@ -30,9 +30,9 @@ pipeline {
 
     stage("Tag Imageregistry"){
       steps {
-        sh "docker tag -t  ${params.Imagename}:${params.ImageTag}  prateekkumawat/${params.Imagename}:${params.ImageTag}"
+        sh "docker tag ${params.Imagename}:${params.ImageTag}  $DOCKER_REPO_CREDS_USR/${params.Imagename}:${params.ImageTag}"
         sh " docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW "
-        sh " docker push prateekkumawat/${params.Imagename}:${params.ImageTag} "
+        sh " docker push $DOCKER_REPO_CREDS_USR/${params.Imagename}:${params.ImageTag} "
       }
     }
   }
