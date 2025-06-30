@@ -11,6 +11,9 @@ pipeline {
      string(name: 'Imagename', defaultValue: 'sampleapp')
      string(name: 'ImageTag', defaultValue: 'latest')
    }
+   environment {
+     DOCKER_REPO_CREDS =  credentials('docker-registy-login')
+   } 
   
    stages {
     stage("App Code Checkout") {
@@ -24,5 +27,13 @@ pipeline {
         sh " docker build -t ${params.Imagename}:${params.ImageTag} . "
       }
     }
-   }
+
+    stage("Tag Imageregistry"){
+      steps {
+        sh "docker tag -t  ${params.Imagename}:${params.ImageTag}  prateekkumawat/${params.Imagename}:${params.ImageTag}"
+        sh " docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW "
+        sh " docker push prateekkumawat/${params.Imagename}:${params.ImageTag} "
+      }
+    }
+  }
 }
