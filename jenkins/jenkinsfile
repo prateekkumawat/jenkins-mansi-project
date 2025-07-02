@@ -29,6 +29,7 @@ pipeline {
         withSonarQubeEnv('sonar-scanner') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
                         -Dsonar.projectName=docker-learning-basic \
+                        -Dsonar.python.version=3.11 \
                         -Dsonar.projectKey=docker-learning-basic '''
         }
       }
