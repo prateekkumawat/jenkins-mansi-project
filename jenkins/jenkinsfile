@@ -13,6 +13,7 @@ pipeline {
    }
    environment {
      DOCKER_REPO_CREDS =  credentials('docker-registy-login')
+     SCANNER_HOME = tool 'sonar-scanner'
    } 
   
    stages {
@@ -22,6 +23,24 @@ pipeline {
       }
     }
     
+    stage('Sonarqube Check') {
+     steps {
+      dir('src/') {
+        withSonarQubeEnv('sonar-scanner') {
+                        sh ''' $SCANNER_HOME/bin/sonar-scanner \
+                        -Dsonar.projectName=docker-learning-basic \
+                        -Dsonar.projectKey=docker-learning-basic '''
+        }
+      }
+     }
+    }
+    stage('QualityGate Check') {
+      steps {
+        script {
+          waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token' 
+          }
+      }
+    }
     stage("Build Docker Image"){
       steps {
         sh " docker build -t ${params.Imagename}:${params.ImageTag} . "
