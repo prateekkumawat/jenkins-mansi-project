@@ -42,11 +42,25 @@ pipeline {
           }
       }
     }
+    stage('Trivy CodeScan'){
+      steps{
+        dir('src/') {
+          sh ' trivy fs . > /tmp/trivyfs.txt'
+        }
+      }
+    }
+    
     stage("Build Docker Image"){
       steps {
         sh " docker build -t ${params.Imagename}:${params.ImageTag} . "
       }
     }
+
+    stage("Trivy ImageScan"){
+      steps {
+        sh " trivy image ${params.Imagename}:${params.ImageTag} > /tmp/trivyimage.txt "
+      }
+    } 
 
     stage("Tag Imageregistry"){
       steps {
