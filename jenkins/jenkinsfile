@@ -22,7 +22,7 @@ pipeline {
     
     stage("compose deployment") {
       steps {
-        sh " docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW "
+        sh "docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW"
         sh " docker-compose up -d "
       }
     }
