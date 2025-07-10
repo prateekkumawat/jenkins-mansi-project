@@ -13,7 +13,7 @@ pipeline {
      DOCKER_REPO_CREDS =  credentials('docker-registy-login')
    } 
   
-   stages {
+  stages {
     stage("App Code Checkout") {
       steps {
         git branch: "${params.Branchname}", url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git'
@@ -21,9 +21,14 @@ pipeline {
     }
     
     stage("compose deployment") {
+      steps {
         sh " docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW "
         sh " docker-compose up -d "
+      }
     }
+  }
+}   
+
 
 
     

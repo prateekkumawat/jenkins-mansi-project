@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: flaskpass
   
   app: 
-    image: prateekkumawat/ecoomarce:appv1
+    image: prateekkumawat/ecommarce:appv1
     container_name: flask_app
     ports: 
       - 5000:5000
@@ -25,7 +25,7 @@ services:
       - databaseapp  
 
   odrer: 
-    image: prateekkumawat/ecoomarce:orderv1
+    image: prateekkumawat/ecommarce:orderv1
     container_name: flask_order
     ports: 
       - 5001:5000
