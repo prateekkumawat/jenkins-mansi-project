@@ -1,0 +1,54 @@
+version: '3.7'
+services: 
+  databaseapp: 
+    image: mysql:latest
+    container_name: mysql 
+    volumes: 
+      - dbvol:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: flaskdb
+      MYSQL_USER: flaskuser
+      MYSQL_PASSWORD: flaskpass
+  
+  app: 
+    image: prateekkumawat/ecoomarce:appv1
+    container_name: flask_app
+    ports: 
+      - 5000:5000
+    environment:
+      MYSQL_USER: flaskuser
+      MYSQL_PASSWORD: flaskpass
+      MYSQL_DB: flaskdb 
+      MYSQL_HOST: databaseapp
+    depends_on: 
+      - databaseapp  
+
+  odrer: 
+    image: prateekkumawat/ecoomarce:orderv1
+    container_name: flask_order
+    ports: 
+      - 5001:5000
+    environment:
+      MYSQL_USER: flaskuser
+      MYSQL_PASSWORD: flaskpass
+      MYSQL_DB: flaskdb 
+      MYSQL_HOST: databaseorder
+    depends_on: 
+      - databaseorder 
+
+  databaseorder: 
+    image: mysql:latest
+    container_name: flask_order_db 
+    volumes: 
+      - orderdbvol:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: flaskdb
+      MYSQL_USER: flaskuser
+      MYSQL_PASSWORD: flaskpass     
+
+volumes:
+  dbvol: 
+  orderdbvol:     
+
