@@ -22,7 +22,7 @@ pipeline {
     
   stage("clean local images"){
     steps {
-      sh " docker image rm -f $(docker image ls) "
+      sh ' docker image rm -f "$(docker image ls)" '
     }
   }  
     stage("compose deployment") {
