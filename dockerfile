@@ -1,7 +1,11 @@
-FROM nginx:latest
+FROM python:3.11-slim
 
-# copy sorce code 
-COPY src /usr/share/nginx/html/
+WORKDIR /app
 
-# EXPOSE PORT
-EXPOSE 80 
+COPY src/ /app   
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "app.py"]
+
+EXPOSE 5000

@@ -45,7 +45,7 @@ pipeline {
     stage('Trivy CodeScan'){
       steps{
         dir('src/') {
-          sh ' trivy fs . > /tmp/trivyfs.txt'
+          sh ' trivy fs . >> /tmp/trivyfs.txt'
         }
       }
     }
@@ -58,7 +58,7 @@ pipeline {
 
     stage("Trivy ImageScan"){
       steps {
-        sh " trivy image ${params.Imagename}:${params.ImageTag} > /tmp/trivyimage.txt "
+        sh " trivy image ${params.Imagename}:${params.ImageTag} >> /tmp/trivyimage.txt "
       }
     } 
 
