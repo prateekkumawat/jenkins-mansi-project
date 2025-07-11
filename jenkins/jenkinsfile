@@ -23,11 +23,11 @@ pipeline {
       }
     }
     
-  stage("clean local images"){
-    steps {
-      sh ' docker image rm -f "$(docker image ls)" '
-    }
-  }  
+  // stage("clean local images"){
+  //   steps {
+  //     sh ' docker image rm -f "$(docker image ls)" '
+  //   }
+  // }  
     stage("compose deployment") {
       steps {
         sh "docker login -u  $DOCKER_REPO_CREDS_USR -p $DOCKER_REPO_CREDS_PSW"
