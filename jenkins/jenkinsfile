@@ -2,6 +2,9 @@ pipeline {
    agent {
     label 'devops'
    }
+   tools {
+    git 'git'
+   }
    options {
     buildDiscarder(logRotator(numToKeepStr: '7'))
     timeout(time: 1, unit: 'HOURS') 
