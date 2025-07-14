@@ -14,6 +14,7 @@ pipeline {
    environment {
      DOCKER_REPO_CREDS =  credentials('docker-registry-creds')
      SCANNER_HOME = tool 'sonar-scanner'
+     SONAR_TOKEN_SECRET= credentials('sonar-token')
    } 
   
    stages {
@@ -27,10 +28,9 @@ pipeline {
      steps {
       dir('src/') {
         withSonarQubeEnv('sonar-server') {
-                        sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=springapp-learning-basic \
-                        -Dsonar.python.version=3.11 \
-                        -Dsonar.projectKey=springapp-learning-basic '''
+              sh mvn clean verify sonar:sonar \
+              -Dsonar.projectKey=springapp-learning-basic \
+              -Dsonar.login=${SONAR_TOKEN_SECRET}
         }
       }
      }

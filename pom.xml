@@ -19,7 +19,7 @@
         <java.version>17</java.version> <!-- Adjust if needed -->
         <sonar.projectKey>demo</sonar.projectKey>
         <sonar.projectName>Demo Spring Boot App</sonar.projectName>
-        <sonar.host.url>http://localhost:9000</sonar.host.url> <!-- Change if needed -->
+        <sonar.host.url>http://35.154.23.207:9000</sonar.host.url> <!-- Change if needed -->
     </properties>
 
     <dependencies>
