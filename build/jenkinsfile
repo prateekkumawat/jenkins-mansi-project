@@ -1,0 +1,22 @@
+pipeline {
+   agent {
+    label 'cimachine'
+   }
+   options {
+    buildDiscarder(logRotator(numToKeepStr: '7'))
+    timeout(time: 1, unit: 'HOURS') 
+   }
+
+   stages {
+    stage("App Code Checkout") {
+      steps {
+        git branch: "springapp", url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git'
+      }
+    }
+    stage("Deploy Container"){
+        steps {
+            sh "docker-compose up -d"
+        }
+    }
+
+}
