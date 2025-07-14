@@ -12,7 +12,7 @@ pipeline {
      string(name: 'ImageTag', defaultValue: 'latest')
    }
    environment {
-     DOCKER_REPO_CREDS =  credentials('docker-registy-creds')
+     DOCKER_REPO_CREDS =  credentials('docker-registry-creds')
      SCANNER_HOME = tool 'sonar-scanner'
    } 
   
