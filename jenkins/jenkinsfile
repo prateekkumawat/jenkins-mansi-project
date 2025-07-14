@@ -28,9 +28,9 @@ pipeline {
      steps {
       dir('src/') {
         withSonarQubeEnv('sonar-server') {
-              sh mvn clean verify sonar:sonar \
+              sh " mvn clean verify sonar:sonar \
               -Dsonar.projectKey=springapp-learning-basic \
-              -Dsonar.login=${SONAR_TOKEN_SECRET}
+              -Dsonar.login=${SONAR_TOKEN_SECRET} "
         }
       }
      }
