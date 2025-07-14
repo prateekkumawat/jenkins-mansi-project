@@ -2,6 +2,9 @@ pipeline {
    agent {
     label 'cimachine'
    }
+   tools {
+    maven 'mvn'
+   }
    options {
     buildDiscarder(logRotator(numToKeepStr: '7'))
     timeout(time: 1, unit: 'HOURS') 
