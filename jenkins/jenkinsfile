@@ -1,18 +1,18 @@
 pipeline {
    agent {
-    label 'docker-agent'
+    label 'cimachine'
    }
    options {
     buildDiscarder(logRotator(numToKeepStr: '7'))
     timeout(time: 1, unit: 'HOURS') 
    }
    parameters {
-     string(name: 'Branchname', defaultValue: 'master')
-     string(name: 'Imagename', defaultValue: 'sampleapp')
+     string(name: 'Branchname', defaultValue: 'springapp')
+     string(name: 'Imagename', defaultValue: 'springapp')
      string(name: 'ImageTag', defaultValue: 'latest')
    }
    environment {
-     DOCKER_REPO_CREDS =  credentials('docker-registy-login')
+     DOCKER_REPO_CREDS =  credentials('docker-registy-creds')
      SCANNER_HOME = tool 'sonar-scanner'
    } 
   
@@ -26,11 +26,11 @@ pipeline {
     stage('Sonarqube Check') {
      steps {
       dir('src/') {
-        withSonarQubeEnv('sonar-scanner') {
+        withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=docker-learning-basic \
+                        -Dsonar.projectName=springapp-learning-basic \
                         -Dsonar.python.version=3.11 \
-                        -Dsonar.projectKey=docker-learning-basic '''
+                        -Dsonar.projectKey=springapp-learning-basic '''
         }
       }
      }
