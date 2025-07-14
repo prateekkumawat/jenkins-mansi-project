@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
@@ -12,15 +11,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <properties>
-        <java.version>17</java.version> <!-- Adjust if needed -->
-        <sonar.projectKey>demo</sonar.projectKey>
-        <sonar.projectName>Demo Spring Boot App</sonar.projectName>
-        <sonar.host.url>http://localhost:9000</sonar.host.url> <!-- Change if needed -->
-    </properties>
 
     <dependencies>
         <dependency>
@@ -40,18 +32,10 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.11.0.3922</version>
-            </plugin>
-
         </plugins>
     </build>
 </project>
