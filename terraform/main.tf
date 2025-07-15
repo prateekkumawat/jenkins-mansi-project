@@ -7,7 +7,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "subnet1" {
   cidr_block = var.subnet_block[0]
-  availability_zone = var.subnet.az[0]
+  availability_zone = var.subnet_az[0]
   vpc_id = aws_vpc.main.id
 
   tags = {
@@ -17,7 +17,7 @@ resource "aws_subnet" "subnet1" {
 
 resource "aws_subnet" "subnet2" {
   cidr_block = var.subnet_block[1]
-  availability_zone = var.subnet.az[1]
+  availability_zone = var.subnet_az[1]
   vpc_id = aws_vpc.main.id
 
   tags = {
@@ -27,7 +27,7 @@ resource "aws_subnet" "subnet2" {
 
 resource "aws_subnet" "subnet3" {
   cidr_block = var.subnet_block[2]
-  availability_zone = var.subnet.az[0]
+  availability_zone = var.subnet_az[0]
   vpc_id = aws_vpc.main.id
 
   tags = {
@@ -37,7 +37,7 @@ resource "aws_subnet" "subnet3" {
 
 resource "aws_subnet" "subnet4" {
   cidr_block = var.subnet_block[3]
-  availability_zone = var.subnet.az[1]
+  availability_zone = var.subnet_az[1]
   vpc_id = aws_vpc.main.id
 
   tags = {
