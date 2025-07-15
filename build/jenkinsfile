@@ -1,24 +1,38 @@
 pipeline {
-   agent {
+  agent {
     label 'cimachine'
-   }
-   options {
+  }
+  options {
     buildDiscarder(logRotator(numToKeepStr: '7'))
     timeout(time: 1, unit: 'HOURS') 
-   }
-
-   stages {
-    stage("App Code Checkout") {
-      steps {
-        git branch: "springapp", url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git'
-      }
-    }
-    stage("Deploy Container"){
-        steps {
-            sh "docker-compose up -d"
-        }
-    }
-
   }
 
+  stages {
+    stage("App Code Checkout") {
+      steps {
+        git branch: "terraform", url: 'https://github.com/prateekkumawat/jenkins-mansi-project.git'
+      }
+    }
+    stage("Init"){
+      steps {
+        dir('terraform/'){
+          sh " terraform init "
+        } 
+      }
+    }
+    stage("Plan"){
+      steps {
+          dir('terraform/'){
+            sh " terraform plan "
+        } 
+      }
+    } 
+    stage("Apply"){
+      steps {
+          dir('terraform/'){
+            sh " terraform apply --auto-approve "
+        } 
+      }
+    }   
+  }
 }
