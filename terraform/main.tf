@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr_block
   tags = {
-    Name = vpc-terraform-jenkins
+    Name = "vpc-terraform-jenkins"
   }
 }
 
@@ -11,7 +11,7 @@ resource "aws_subnet" "subnet1" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = terraform-jenkins-subnet1
+    Name = "terraform-jenkins-subnet1"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_subnet" "subnet2" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = terraform-jenkins-subnet2
+    Name = "terraform-jenkins-subnet2"
   }
 }
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "subnet3" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = terraform-jenkins-subnet3
+    Name = "terraform-jenkins-subnet3"
   }
 }
 
@@ -41,6 +41,6 @@ resource "aws_subnet" "subnet4" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = terraform-jenkins-subnet4
+    Name = "terraform-jenkins-subnet4"
   }
 }
